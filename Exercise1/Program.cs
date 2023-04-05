@@ -127,5 +127,19 @@ namespace Exercise1
                 Console.WriteLine();
             }
         }
+        public void insert(string IdMember, string NmaMember, string Almt, string notlpn, SqlConnection con)
+        {
+            string str = "";
+            str = "insert into Member (IdMember, NamaMember, No_Tlpn)" + "values(@id, @nma, @alamat, @Tlpn)";
+            SqlCommand cmd = new SqlCommand(str, con);
+            cmd.CommandType = CommandType.Text;
+
+            cmd.Parameters.Add(new SqlParameter("nim", IdMember));
+            cmd.Parameters.Add(new SqlParameter("nma", NmaMember));
+            cmd.Parameters.Add(new SqlParameter("alamat", Almt));
+            cmd.Parameters.Add(new SqlParameter("Phn", notlpn));
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Data Berhasil Ditambahkan");
+        }
     }
 }
